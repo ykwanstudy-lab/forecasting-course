@@ -132,7 +132,7 @@ points(present_loc, pch='+', cex = 0.5)
 
 ```r
 plot(predictions > 0.5, ext = extent(-140, -50, 25, 60))
-points(present, pch='+', cex = 0.5)
+points(present_loc, pch='+', cex = 0.5)
 ```
 
 * Different thresholds often have better characteristics depending on what we value
@@ -141,7 +141,7 @@ points(present, pch='+', cex = 0.5)
 
 ```r
 plot(predictions > 0.25, ext = extent(-140, -50, 25, 60))
-points(present, pch='+', cex = 0.5)
+points(present_loc, pch='+', cex = 0.5)
 ```
 
 ## Evaluate the model performance
@@ -191,7 +191,7 @@ plot(evaluation, 'ROC')
 ```r
 thresh <- threshold(evaluation, stat = 'prevalence')
 plot(predictions > thresh, ext = extent(-140, -50, 25, 60))
-points(present, pch='+', cex = 0.5)
+points(present_loc, pch='+', cex = 0.5)
 ```
 
 ## Make forecasts
