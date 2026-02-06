@@ -78,7 +78,7 @@ plot(env_data_current$precip)
 
 ```r
 hooded_warb_data = env_data_current |>
-  extract(select(hooded_warb_data, lon, lat)) |>
+  terra::extract(dplyr::select(hooded_warb_data, lon, lat)) |>
   bind_cols(hooded_warb_data)
 ```
 
@@ -120,7 +120,7 @@ summary(logistic_regr_model)
 
 ```r
 predictions <- predict(env_data_current, logistic_regr_model, type = "response")
-present_loc <- select(filter(hooded_warb_data, present == 1), lon, lat)
+present_loc <- dplyr::select(filter(hooded_warb_data, present == 1), lon, lat)
 plot(predictions, ext = extent(-140, -50, 25, 60))
 points(present_loc, pch='+', cex = 0.5)
 ```
@@ -132,7 +132,7 @@ points(present_loc, pch='+', cex = 0.5)
 
 ```r
 plot(predictions > 0.5, ext = extent(-140, -50, 25, 60))
-points(present, pch='+', cex = 0.5)
+points(present_loc, pch='+', cex = 0.5)
 ```
 
 * Different thresholds often have better characteristics depending on what we value
@@ -141,7 +141,7 @@ points(present, pch='+', cex = 0.5)
 
 ```r
 plot(predictions > 0.25, ext = extent(-140, -50, 25, 60))
-points(present, pch='+', cex = 0.5)
+points(present_loc, pch='+', cex = 0.5)
 ```
 
 ## Evaluate the model performance
@@ -191,7 +191,7 @@ plot(evaluation, 'ROC')
 ```r
 thresh <- threshold(evaluation, stat = 'prevalence')
 plot(predictions > thresh, ext = extent(-140, -50, 25, 60))
-points(present, pch='+', cex = 0.5)
+points(present_loc, pch='+', cex = 0.5)
 ```
 
 ## Make forecasts

@@ -40,6 +40,7 @@ library(tsibble)
 library(fable)
 library(feasts)
 library(dplyr)
+library(ggplot2)
 ```
 
 * Load the data
