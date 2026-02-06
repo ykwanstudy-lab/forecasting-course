@@ -31,6 +31,7 @@ library(tsibble)
 library(fable)
 library(feasts)
 library(dplyr)
+library(ggplot2)
 
 portal_data = read.csv("portal_timeseries.csv") |>
   mutate(month = yearmonth(date)) |>
